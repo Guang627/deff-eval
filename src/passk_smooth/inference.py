@@ -1,20 +1,3 @@
-"""Confidence intervals for pass@k that remain valid when problems are dependent.
-
-Benchmark problems share sources, templates and topics, so their success
-counts are not independent. Treating them as iid understates uncertainty.
-Three schemes are provided:
-
-* ``iid``       : nonparametric bootstrap over problems (the usual default);
-* ``cluster``   : bootstrap over clusters (e.g. MATH subject x level), valid
-                  under arbitrary dependence within clusters and independence
-                  across clusters;
-* ``block``     : moving-block bootstrap over an ordering of problems (e.g. by
-                  source id), for weak dependence without known clusters.
-
-Every replicate refits the estimator, including its CV bandwidth, so the
-interval reflects bandwidth-selection variability too.
-"""
-
 from __future__ import annotations
 
 from collections.abc import Callable, Sequence
@@ -68,7 +51,6 @@ def bootstrap_ci(
     level: float = 0.95,
     seed: int = 0,
 ) -> Interval:
-    """Percentile bootstrap interval for pass@k at each k."""
     counts = np.asarray(counts)
     ks_arr = np.asarray(ks, int)
     est = make_estimator().fit(counts, n).pass_at_k(ks_arr)
@@ -83,11 +65,6 @@ def bootstrap_ci(
 
 
 def cluster_robust_se(contrib: np.ndarray, clusters: np.ndarray | None = None) -> float:
-    """Sandwich SE of a mean of per-problem contributions (Liang-Zeger / Miller 2024).
-
-    For the unbiased estimator the contribution of problem i is w_k(X_i); with
-    ``clusters=None`` this is the iid standard error.
-    """
     c = np.asarray(contrib, float)
     m = c.size
     r = c - c.mean()
@@ -101,16 +78,10 @@ def cluster_robust_se(contrib: np.ndarray, clusters: np.ndarray | None = None) -
 
 
 def design_effect(contrib: np.ndarray, clusters: np.ndarray) -> float:
-    """Variance inflation from clustering: (cluster-robust SE / iid SE)^2."""
     return (cluster_robust_se(contrib, clusters) / cluster_robust_se(contrib)) ** 2
 
 
 def wilson_interval(successes: int, m: int, level: float = 0.95) -> tuple[float, float]:
-    """Wilson score interval for a binomial proportion.
-
-    At k = n the unbiased estimator is just the share of problems solved at least once,
-    so with independent problems this textbook interval is the natural iid baseline.
-    """
     from scipy.stats import norm
 
     if m == 0:
@@ -136,12 +107,6 @@ def paired_bootstrap_diff(
     level: float = 0.95,
     seed: int = 0,
 ) -> Interval:
-    """Percentile interval for pass@k(B) - pass@k(A) on the same problems.
-
-    Both models are resampled with the *same* problem (or cluster) indices, so the
-    correlation between models on shared problems is kept; this is what makes a paired
-    comparison much tighter than two separate intervals.
-    """
     a, b = np.asarray(counts_a), np.asarray(counts_b)
     if a.shape != b.shape:
         raise ValueError("paired comparison needs the same problems for both models")

@@ -96,4 +96,4 @@ tests/              unit tests
 
 ## License
 
-MIT (see LICENSE).
+MIT (see `pyproject.toml`).

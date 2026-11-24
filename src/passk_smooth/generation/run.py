@@ -1,12 +1,3 @@
-"""Generate N attempts per problem, grade them, and write per-problem counts.
-
-Outputs (in ``output_dir``):
-  completions.jsonl  one line per problem: id, completions, correctness (optional)
-  counts.csv         problem_id, subject, level, cluster, n_samples, n_correct
-  meta.json          config, timing, model, git sha
-Resumable: problems already in completions.jsonl are skipped.
-"""
-
 from __future__ import annotations
 
 import json
@@ -26,12 +17,6 @@ log = logging.getLogger(__name__)
 
 
 def _load_done(comp_path: Path) -> dict[str, dict]:
-    """Read finished problems; drop a half-written line left by an interrupted run.
-
-    The progress sync copies completions.jsonl to S3 while it is being appended to, so a spot
-    interruption can leave a truncated last line. Unreadable lines are discarded (those problems
-    are simply generated again) and the file is rewritten so new lines append cleanly.
-    """
     done: dict[str, dict] = {}
     good: list[str] = []
     bad = 0

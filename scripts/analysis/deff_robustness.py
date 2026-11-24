@@ -1,10 +1,3 @@
-"""Robustness of the pilot design-effect prediction (CPU only, existing answers; no new generations).
-
-1. Pilot size: GSM-Symbolic pilots of 6, 9, 15 (default) and 24 original questions (2:1 three-level : two-level),
-   SWE-bench pilots of 3, 5, 10 (default) and 20 earlier submissions.
-2. Finite-population corrections: design prediction with and without the FPC terms (pilot size at default).
-Outputs results/deff_validation/robustness_{pilot_size,fpc}.csv.
-"""
 import os
 import sys
 

@@ -9,7 +9,6 @@ d=pd.read_csv("../../results/deff_validation/deff_splits.csv")
 def agg(b,k,tiers,col):
     s=d[(d.benchmark==b)&(d.k==k)].groupby("tier")[col]
     return np.array([[s.median()[t],s.quantile(.05)[t],s.quantile(.95)[t]] for t in tiers])
-# ---------- Fig 1
 fig,ax=plt.subplots(1,2,figsize=(6.75,2.45))
 G=["50x2","20x5","10x10"]; S=["8x5","4x10","2x20","1x40"]
 def panel(a,b,k,tiers,color,lab,design=True,marker="o",lim=None,labels=True,offset=(4,-3)):
@@ -31,12 +30,10 @@ panel(ax[0],"GSM-Symbolic",16,G,ORANGE,"pass@16",design=False,marker="s",offset=
 panel(ax[1],"SWE-bench Verified",1,S,AQUA,"pass@1",offset=(-22,5))
 ax[0].legend(loc="upper left",fontsize=6.5,handletextpad=0.3); ax[1].legend(loc="upper left",fontsize=6.5,handletextpad=0.3)
 fig.tight_layout(); fig.savefig("figs/fig_pred_vs_measured.pdf"); fig.savefig("figs/fig_pred_vs_measured.png",dpi=200)
-# ---------- Fig 2
 fig,ax=plt.subplots(1,2,figsize=(6.75,2.2),gridspec_kw={"width_ratios":[1,1.15]})
 def cov(a,b,k,tiers,color,shift,lab):
     x=np.arange(len(tiers))+shift
     for col,filled,nm in [("cov_iid",False,"iid"),("cov_deff",True,"iid × √deff (pilot)")]:
-        # coverage = share of all draws covered, i.e. the mean over splits (same as deff_summary.csv), not the median
         cs=d[(d.benchmark==b)&(d.k==k)].groupby("tier")[col].mean(); v=np.array([cs[t] for t in tiers])
         a.plot(x,v,marker="o" if k==1 else "s",ms=5,mfc=color if filled else "white",mec=color,mew=1.2,
                color=color,lw=0.8 if filled else 0.6,ls="-" if filled else ":",label=f"{lab}, {nm}")

@@ -1,17 +1,12 @@
-# Pilot for generate_gsm_symbolic.yaml: checks the dataset schema, grading and output length (~15 min).
-# 100 (main) + 100 (P1) + 50 (P2) templates x 20 variants = 5,000 problems x 64 attempts.
-# Analysis subsamples n = 16 attempts per problem and draws 100-problem benchmarks with a fixed
-# difficulty mix spread over 100x1, 50x2, 20x5 or 10x10 templates x variants
-# (scripts/analysis/template_tiers.py).
 backend: vllm
 model: Qwen/Qwen2.5-Math-1.5B-Instruct
 dataset: apple/GSM-Symbolic
 dataset_configs: [main, p1, p2]
 split: test
 variants_per_template: 20
-limit: 100                  # pilot: 100 random problems
+limit: 100
 n_samples: 64
-batch_problems: 100         # 6,400 generations per checkpoint
+batch_problems: 100
 sampling:
   temperature: 0.6
   top_p: 0.95

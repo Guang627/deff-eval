@@ -1,6 +1,3 @@
-"""Generation backends. ``vllm`` for GPU runs, ``hf`` for small CPU checks,
-``mock`` for tests and CI (no model, no network)."""
-
 from __future__ import annotations
 
 import hashlib
@@ -18,14 +15,14 @@ class Backend(ABC):
 
     @abstractmethod
     def generate(self, problems: list[dict[str, Any]], n: int) -> list[list[str]]:
-        """Return n completions for each problem."""
+        pass
 
 
 def build_messages(cfg: GenerateConfig, problem: str) -> list[dict[str, str]]:
     return [{"role": "system", "content": cfg.system_prompt}, {"role": "user", "content": problem}]
 
 
-class VLLMBackend(Backend):  # pragma: no cover - needs a GPU
+class VLLMBackend(Backend):  # pragma: no cover
     def __init__(self, cfg: GenerateConfig) -> None:
         from vllm import LLM, SamplingParams
 
@@ -52,9 +49,7 @@ class VLLMBackend(Backend):  # pragma: no cover - needs a GPU
         return [[c.text for c in o.outputs] for o in outs]
 
 
-class HFBackend(Backend):  # pragma: no cover - needs model weights
-    """transformers.generate; slow, intended for a handful of problems on CPU."""
-
+class HFBackend(Backend):  # pragma: no cover
     def __init__(self, cfg: GenerateConfig) -> None:
         import torch
         from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -88,12 +83,6 @@ class HFBackend(Backend):  # pragma: no cover - needs model weights
 
 
 class MockBackend(Backend):
-    """Pretend model: problem-specific success probability from a hash of its id.
-
-    Emits "\\boxed{gold}" with probability p and a wrong boxed answer otherwise,
-    so the grading and aggregation path is exercised end to end.
-    """
-
     def __init__(self, cfg: GenerateConfig) -> None:
         self.cfg = cfg
         self.rng = np.random.default_rng(cfg.mock_seed)

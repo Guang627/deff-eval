@@ -1,5 +1,3 @@
-"""Generation pipeline (mock backend), resume, and attempt subsampling."""
-
 import json
 
 import numpy as np
@@ -17,10 +15,9 @@ def test_generation_mock_and_resume(tmp_path):
     df = pd.read_csv(path)
     assert len(df) == 12 and (df.n_samples == 40).all()
     assert df.n_correct.between(0, 40).all()
-    # never-solvable mock problems get zero correct (grading path works)
     assert (df.n_correct == 0).any() and (df.n_correct > 0).any()
     lines_before = (tmp_path / "completions.jsonl").read_text().count("\n")
-    run_generation(cfg)  # resume: nothing new generated
+    run_generation(cfg)
     assert (tmp_path / "completions.jsonl").read_text().count("\n") == lines_before
 
 
@@ -29,7 +26,6 @@ def test_resume_survives_truncated_last_line(tmp_path):
     run_generation(cfg)
     comp = tmp_path / "completions.jsonl"
     lines = comp.read_text().splitlines()
-    # simulate a spot interruption mid-write: last two problems lost, one line half-written
     comp.write_text("\n".join(lines[:-2]) + "\n" + lines[-2][: len(lines[-2]) // 2])
     df = pd.read_csv(run_generation(cfg))
     assert len(df) == len(lines) == 12

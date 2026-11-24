@@ -1,4 +1,3 @@
-"""Figure for template_tiers.py: SD of the estimate and 95% interval coverage by tier."""
 import argparse
 
 import matplotlib

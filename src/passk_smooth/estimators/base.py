@@ -1,22 +1,3 @@
-"""Shared definitions for pass@k estimators.
-
-Notation
---------
-M problems, each attempted ``n`` times. ``X_i`` in {0, ..., n} is the number of
-correct attempts for problem i, and ``p_i`` its (unknown) per-attempt success
-probability. The benchmark-level target is
-
-    pass@k = (1/M) * sum_i [1 - (1 - p_i)^k].
-
-For k <= n, pass@k is a *linear* functional of the distribution of X:
-
-    pass@k = sum_x f(x) * w_k(x),   w_k(x) = 1 - C(n - x, k) / C(n, k),
-
-which is the identity behind the unbiased estimator of Chen et al. (2021).
-Every estimator in this package returns pass@k through this module so that
-the plug-in step is identical across methods.
-"""
-
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
@@ -29,7 +10,6 @@ ArrayLike = Sequence[int] | np.ndarray
 
 
 def as_counts(x: ArrayLike, n: int) -> np.ndarray:
-    """Validate per-problem success counts and return them as an int array."""
     arr = np.asarray(x)
     if arr.ndim != 1 or arr.size == 0:
         raise ValueError("counts must be a non-empty 1-d array")
@@ -42,12 +22,10 @@ def as_counts(x: ArrayLike, n: int) -> np.ndarray:
 
 
 def histogram(x: np.ndarray, n: int) -> np.ndarray:
-    """Number of problems with each success count 0..n (length n + 1)."""
     return np.bincount(x, minlength=n + 1).astype(float)
 
 
 def log_comb(a: np.ndarray | float, b: np.ndarray | float) -> np.ndarray:
-    """log C(a, b), with -inf where b > a."""
     a = np.asarray(a, dtype=float)
     b = np.asarray(b, dtype=float)
     out = np.full(np.broadcast(a, b).shape, -np.inf)
@@ -58,7 +36,6 @@ def log_comb(a: np.ndarray | float, b: np.ndarray | float) -> np.ndarray:
 
 
 def passk_weights(n: int, k: int) -> np.ndarray:
-    """w_k(x) = 1 - C(n - x, k) / C(n, k) for x = 0..n (requires k <= n)."""
     if not 1 <= k <= n:
         raise ValueError(f"need 1 <= k <= n, got k={k}, n={n}")
     x = np.arange(n + 1)
@@ -66,7 +43,6 @@ def passk_weights(n: int, k: int) -> np.ndarray:
 
 
 def binomial_matrix(n: int, p_grid: np.ndarray) -> np.ndarray:
-    """B[x, j] = P(X = x | p = p_grid[j]) for X ~ Binomial(n, p)."""
     x = np.arange(n + 1)[:, None]
     p = np.asarray(p_grid, dtype=float)[None, :]
     with np.errstate(divide="ignore", invalid="ignore"):
@@ -78,10 +54,7 @@ def binomial_matrix(n: int, p_grid: np.ndarray) -> np.ndarray:
 
 
 class PassAtKEstimator(ABC):
-    """Common interface: ``fit`` on counts, then query pass@k or the pmf."""
-
     name: str = "base"
-    #: whether the estimator returns finite values for k > n
     extrapolates: bool = True
 
     def __init__(self) -> None:
@@ -99,14 +72,13 @@ class PassAtKEstimator(ABC):
 
     @abstractmethod
     def pmf(self) -> np.ndarray:
-        """Estimated distribution of the success count on {0, ..., n}."""
+        pass
 
     @abstractmethod
     def _pass_beyond(self, k: int) -> float:
-        """pass@k for k > n (extrapolation); NaN if not supported."""
+        pass
 
     def pass_at_k(self, ks: int | Sequence[int] | np.ndarray) -> np.ndarray:
-        """pass@k for each requested k. k <= n uses the plug-in identity."""
         if self.n_ is None:
             raise RuntimeError("call fit() first")
         ks_arr = np.atleast_1d(np.asarray(ks, dtype=int))
@@ -119,8 +91,7 @@ class PassAtKEstimator(ABC):
         return out
 
     def params(self) -> dict[str, float]:
-        """Fitted tuning parameters, for logging."""
         return {}
 
-    def __repr__(self) -> str:  # pragma: no cover - cosmetic
+    def __repr__(self) -> str:  # pragma: no cover
         return f"{type(self).__name__}(name={self.name!r})"

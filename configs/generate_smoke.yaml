@@ -1,4 +1,3 @@
-# CPU-only end-to-end check: mock "model" on the bundled toy problems.
 backend: mock
 model: mock
 dataset: toy

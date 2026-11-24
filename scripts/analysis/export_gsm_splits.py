@@ -1,10 +1,3 @@
-"""Write the GSM-Symbolic rows of a deff_validation run as results/deff_validation/gsm_<split>_20.csv (input to Fig. 4).
-
-    python scripts/analysis/deff_validation.py --gsm-split level --out outputs/deff_level
-    python scripts/analysis/export_gsm_splits.py outputs/deff_level/deff_splits.csv level
-    python scripts/analysis/export_gsm_splits.py results/deff_validation/deff_splits.csv original
-"""
-
 import os
 import sys
 

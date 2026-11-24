@@ -1,27 +1,3 @@
-"""Same difficulty mix, different numbers of templates: how reliable is pass@k for a 100-problem benchmark?
-
-Input: counts.csv from `passk generate` on GSM-Symbolic (configs/generate_gsm_symbolic.yaml), one row per
-variant with columns level (main / p1 / p2), subject (template id), n_samples (N), n_correct.
-A template is (level, subject).
-
-Each draw builds a 100-problem benchmark with a fixed composition of 40 main / 30 P1 / 30 P2 problems and
-one of four tiers, templates x variants per template:
-    100x1 : 40/30/30 templates, 1 variant each
-    50x2  : 20/15/15 templates, 2 variants each
-    20x5  :  8/6/6   templates, 5 variants each
-    10x10 :  4/3/3   templates, 10 variants each
-Templates are drawn without replacement within level, variants without replacement within template, and n of
-the N attempts per problem without replacement. Every tier uses the same number of problems and attempts.
-
-Target (fixed before any draw): 0.4 pass@k(main) + 0.3 pass@k(P1) + 0.3 pass@k(P2), each level's pass@k being
-the mean over all its templates and variants from all N attempts.
-Estimate: Chen's estimator averaged over the 100 problems (the composition already matches the weights).
-Intervals (95% percentile bootstrap): iid over problems; stratified by level; template-cluster bootstrap
-stratified by level. Reported per tier and k: SD and RMSE of the estimate, coverage and mean width.
-
---synthetic builds a pool with logit p = level shift + template effect + variant effect, for dry runs.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -53,11 +29,10 @@ def synthetic_pool(seed: int, big_n: int, variants: int, sd_t: float, sd_v: floa
 
 
 def boot_ci(y: np.ndarray, groups: list[np.ndarray], rng: np.random.Generator, n_boot: int) -> np.ndarray:
-    """Percentile CI of the mean of y (m, K). groups: per stratum, a list of index arrays (resampling units)."""
     m = y.shape[0]
     stats = np.zeros((n_boot, y.shape[1]))
     for units in groups:
-        sums = np.array([y[u].sum(0) for u in units])  # (units, K)
+        sums = np.array([y[u].sum(0) for u in units])
         pick = rng.integers(0, len(units), size=(n_boot, len(units)))
         stats += sums[pick].sum(1)
     return np.quantile(stats / m, [0.025, 0.975], axis=0)
@@ -81,8 +56,8 @@ def main() -> None:
     d["level"] = d["level"].astype(str).str.lower()
     big_n = int(d.n_samples.iloc[0])
     ks = np.array([int(k) for k in a.ks.split(",")])
-    w = np.array([passk_weights(a.n, int(k)) for k in ks])  # (K, n+1)
-    templates = []  # per level: list of index arrays (variants of one template)
+    w = np.array([passk_weights(a.n, int(k)) for k in ks])
+    templates = []
     target = np.zeros(ks.size)
     for li, lev in enumerate(LEVELS):
         dl = d[d.level == lev]
@@ -92,7 +67,7 @@ def main() -> None:
         templates.append([g.index.to_numpy() for _, g in dl.groupby("subject")])
     c = d.n_correct.to_numpy()
     icc = {}
-    for lev in LEVELS:  # one-way ANOVA share of between-template variance in per-variant success rates
+    for lev in LEVELS:
         dl = d[d.level == lev].assign(ph=lambda z: z.n_correct / big_n)
         g = dl.groupby("subject").ph
         v_n = int(g.size().iloc[0])
@@ -116,7 +91,7 @@ def main() -> None:
                     tmpl_of += [j] * v
             idx_a, lev_a, tmpl_a = np.array(idx), np.array(lev_of), np.array(tmpl_of)
             x = subsample_counts(rng, c[idx_a], big_n, a.n)
-            y = w[:, x].T  # (100, K) per-problem Chen
+            y = w[:, x].T
             est = y.mean(0)
             schemes = {
                 "iid": [[np.array([i]) for i in range(y.shape[0])]],

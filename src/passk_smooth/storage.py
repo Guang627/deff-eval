@@ -1,5 +1,3 @@
-"""Tiny local/S3 storage layer. Paths starting with ``s3://`` go through boto3."""
-
 from __future__ import annotations
 
 import os
@@ -35,7 +33,6 @@ def download_file(uri: str, local: str | Path) -> Path:
 
 
 def sync_dir_to_s3(local_dir: str | Path, uri: str) -> list[str]:
-    """Upload every file under ``local_dir`` to the ``uri`` prefix. Returns uploaded keys."""
     bucket, prefix = split_s3(uri.rstrip("/") + "/")
     cli = _client()
     keys = []
@@ -48,7 +45,6 @@ def sync_dir_to_s3(local_dir: str | Path, uri: str) -> list[str]:
 
 
 def localize(uri: str, cache_dir: str | Path = ".cache/s3") -> Path:
-    """Return a local path for ``uri``, downloading from S3 if needed."""
     if not is_s3(uri):
         return Path(uri)
     bucket, key = split_s3(uri)

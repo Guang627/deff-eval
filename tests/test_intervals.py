@@ -1,5 +1,3 @@
-"""Wilson interval and paired bootstrap for a pass@k difference."""
-
 import numpy as np
 import pytest
 
@@ -24,7 +22,7 @@ def test_paired_bootstrap_identical_models_and_shape_check(counts):
 
 def test_paired_is_tighter_than_unpaired(counts, rng):
     x, p = counts
-    y = rng.binomial(10, np.clip(p + 0.03, 0, 1))  # same problems, slightly better model
+    y = rng.binomial(10, np.clip(p + 0.03, 0, 1))
     ci = paired_bootstrap_diff(x, y, 10, UnbiasedEstimator, [1], n_boot=300, seed=1)
     se_unpaired = np.sqrt(np.var(x / 10, ddof=1) / x.size + np.var(y / 10, ddof=1) / y.size)
     assert ci.se[0] < se_unpaired

@@ -1,5 +1,3 @@
-"""Command line entry point: ``passk generate --config <yaml> [key=value ...]``."""
-
 from __future__ import annotations
 
 import argparse

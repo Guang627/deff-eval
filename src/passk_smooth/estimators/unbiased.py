@@ -1,7 +1,3 @@
-"""Unbiased estimator of Chen et al. (2021), "Evaluating Large Language Models
-Trained on Code". It is the plug-in of the *empirical* count distribution, so
-it is unbiased for k <= n and undefined for k > n."""
-
 from __future__ import annotations
 
 import numpy as np

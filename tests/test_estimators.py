@@ -7,7 +7,6 @@ from passk_smooth.estimators.base import binomial_matrix
 
 
 def chen_reference(x, n, k):
-    """Literal per-problem formula from Chen et al. (2021)."""
     return np.mean([1.0 - comb(n - c, k, exact=True) / comb(n, k, exact=True) for c in x])
 
 

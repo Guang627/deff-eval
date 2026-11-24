@@ -1,10 +1,3 @@
-"""Experiment tracking via MLflow, degrading to a no-op if MLflow is absent.
-
-Set ``MLFLOW_TRACKING_URI`` to log to a server (e.g. one backed by S3 and
-RDS on AWS); the default is a local SQLite store, ``./mlflow.db``
-(browse with ``mlflow ui --backend-store-uri sqlite:///mlflow.db``).
-"""
-
 from __future__ import annotations
 
 import contextlib
@@ -34,7 +27,6 @@ class _NoOp:
 
 @contextlib.contextmanager
 def run(experiment: str, run_name: str, config: dict[str, Any], enabled: bool = True) -> Iterator[Any]:
-    """Context manager yielding an object with log_params/log_metrics/log_artifacts."""
     try:
         import mlflow
     except Exception:
@@ -46,7 +38,7 @@ def run(experiment: str, run_name: str, config: dict[str, Any], enabled: bool = 
         mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI", f"sqlite:///{Path('mlflow.db').resolve()}"))
         mlflow.set_experiment(experiment)
         ctx = mlflow.start_run(run_name=run_name)
-    except Exception as e:  # tracking must never take an experiment down
+    except Exception as e:
         logging.getLogger(__name__).warning("MLflow unavailable (%s); tracking disabled", e)
         yield _NoOp()
         return

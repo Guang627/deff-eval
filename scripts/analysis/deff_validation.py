@@ -1,29 +1,3 @@
-"""Can a small pilot predict how much concentrating a benchmark on few sources inflates the spread of pass@k?
-
-Rule tested: SD(tier) / SD(baseline) ~ sqrt(1 + (m - 1) rho), m = problems per source, rho = intraclass correlation
-of the per-problem estimate (Chen, n attempts) between sources. rho is always estimated on pilot data that are
-disjoint from the data used to measure the spread (no resampling result is used twice).
-
-GSM-Symbolic (sources = templates). Each split puts 15/15/10 templates per level (main/P1/P2) into a pilot that sees
-4 variants x n = 16 attempts each (~160 problems); the remaining templates are the holdout pool. Predictions:
-  naive   sqrt(1 + (V - 1) rho), rho pooled within level from the pilot;
-  design  stratified two-stage variance with finite-population corrections for the actual draws
-          (templates out of T_l, variants out of 20, n of 64 attempts), components from the pilot (pass@1 only).
-Measured: SD of the 100-problem estimate over draws of the four tiers from the holdout pool.
-
-SWE-bench Verified (sources = repositories, pass@1, one attempt per task). Each split takes 10 random submissions as
-the pilot (rho = mean of their repository ICCs) and evaluates the other submissions. Tiers vs natural (40 tasks at
-random from 500). Predictions use the actual tier sizes: naive sqrt(1 + (V - 1) rho); design adds the
-finite-population corrections (R of the eligible repositories, V of each repository's tasks) and takes the
-between-repository variance of the eligible repositories and their within variances from the pilot submissions.
-
-MATH-500 (no source labels; groups = subject x level cells, which are composition variables). Design A redraws 12 of
-35 cells; design B fixes the cell mix. Shows that the same formula "explains" design A even though nothing here is a
-source: the cause is the composition change, and fixing the composition removes it.
-
-Coverage is checked separately: iid normal interval vs the same interval widened by the pilot's sqrt(deff).
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -40,7 +14,6 @@ Z = 1.959964
 
 
 def anova_balanced(y: np.ndarray) -> tuple[float, float]:
-    """y (groups, per-group). Returns (sigma_b^2, MSW)."""
     v = y.shape[1]
     msb = v * y.mean(1).var(ddof=1)
     msw = y.var(1, ddof=1).mean()
@@ -62,32 +35,28 @@ def cover(est, se, target):
     return float(np.mean(np.abs(est - target) <= Z * se))
 
 
-# ---------------------------------------------------------------- GSM-Symbolic
 GSM_TIERS = {"100x1": ((40, 30, 30), 1), "50x2": ((20, 15, 15), 2), "20x5": ((8, 6, 6), 5), "10x10": ((4, 3, 3), 10)}
 LEVELS, W = ["main", "p1", "p2"], np.array([0.4, 0.3, 0.3])
 
 
 def gsm(path: str, splits: int, reps: int, seed: int, n: int = 16, ks=(1, 16), split_by: str = "original",
         pilot_q: tuple[int, int] = (10, 5)) -> pd.DataFrame:
-    """split_by="original" keeps every difficulty version (main/P1/P2) of one GSM8K question on the same side of the
-    pilot/held-out split; "level" (the first version of this analysis) splits templates within each level separately,
-    so the pilot and the held-out pool share ~34 of the pilot's ~35 original questions through other levels."""
     d = pd.read_csv(path)
     big_n = int(d.n_samples.iloc[0])
     wk = {k: passk_weights(n, k) for k in ks}
-    tm, srcs = [], []  # per level: array (templates, 20 variants) of counts; original GSM8K id per template
+    tm, srcs = [], []
     for lev in LEVELS:
         dl = d[d.level == lev].sort_values("problem_id")
         tm.append(np.stack([g.n_correct.to_numpy() for _, g in dl.groupby("subject")]))
         srcs.append(np.array([g.source.iloc[0] for _, g in dl.groupby("subject")]).astype(str))
-    tri = np.unique(srcs[2])  # original questions with all three levels (50); the other 50 have main and P1 only
+    tri = np.unique(srcs[2])
     duo = np.setdiff1d(np.unique(srcs[0]), tri)
-    pilot_t, pilot_v = (sum(pilot_q), sum(pilot_q), pilot_q[0]), 4  # default 15/15/10 templates
+    pilot_t, pilot_v = (sum(pilot_q), sum(pilot_q), pilot_q[0]), 4
     rows = []
     for s in range(splits):
         rng = np.random.default_rng([seed, 1, s])
         hold, comp = [], {k: [] for k in ks}
-        if split_by == "original":  # 10 three-level + 5 two-level questions -> 15/15/10 pilot templates
+        if split_by == "original":
             pil_src = np.concatenate([rng.choice(tri, pilot_q[0], replace=False), rng.choice(duo, pilot_q[1], replace=False)])
         pil_ids, hold_ids = set(), set()
         for li in range(3):
@@ -101,7 +70,7 @@ def gsm(path: str, splits: int, reps: int, seed: int, n: int = 16, ks=(1, 16), s
             pc = tm[li][perm[: pilot_t[li]]][:, rng.permutation(20)[:pilot_v]]
             hold.append(tm[li][perm[pilot_t[li] :]])
             x = subsample_counts(rng, pc.ravel(), big_n, n).reshape(pc.shape)
-            s2a = np.mean((1 - n / big_n) * x * (n - x) / (n * (n - 1)) / n)  # attempt noise of y_1
+            s2a = np.mean((1 - n / big_n) * x * (n - x) / (n * (n - 1)) / n)
             for k in ks:
                 sb, msw = anova_balanced(wk[k][x])
                 comp[k].append((sb, msw, s2a))
@@ -152,7 +121,6 @@ def gsm(path: str, splits: int, reps: int, seed: int, n: int = 16, ks=(1, 16), s
     return pd.DataFrame(rows)
 
 
-# ---------------------------------------------------------------- SWE-bench
 SWE_TIERS = {"natural": (None, None), "8x5": (8, 5), "4x10": (4, 10), "2x20": (2, 20), "1x40": (1, 40)}
 
 
@@ -167,7 +135,6 @@ def swe(path: str, splits: int, reps: int, seed: int, pilot: int = 10, m: int = 
     sizes = np.array([mm.size for mm in members])
     A = Y.to_numpy(float)
     icc = np.array([(lambda sb, sw: sb / (sb + sw))(*anova_unbalanced(a, ri)) for a in A])
-    # repository ICC after removing difficulty (terciles of the other submissions' solve rate)
     icc_resid = []
     for i, a in enumerate(A):
         other = np.delete(A, i, 0).mean(0)
@@ -178,7 +145,6 @@ def swe(path: str, splits: int, reps: int, seed: int, pilot: int = 10, m: int = 
     subs = pd.DataFrame({"submission": Y.index, "rate": A.mean(1), "icc_repo": icc, "icc_repo_given_difficulty": icc_resid})
 
     def design_ratio(pil, R, V, fpc=True):
-        """Exact-design variance ratio with repository means and within variances taken from pilot submissions."""
         if R is None:
             return 1.0
         elig = np.flatnonzero(sizes >= V)
@@ -195,7 +161,6 @@ def swe(path: str, splits: int, reps: int, seed: int, pilot: int = 10, m: int = 
             out.append(var_t / var_n)
         return float(np.sqrt(np.mean(out)))
 
-    # measured SD / coverage per submission (computed once; pilot splits only change rho)
     meas = []
     for si in range(A.shape[0]):
         rng = np.random.default_rng([seed, 2, si])
@@ -234,7 +199,6 @@ def swe(path: str, splits: int, reps: int, seed: int, pilot: int = 10, m: int = 
     return pd.DataFrame(rows), subs
 
 
-# ---------------------------------------------------------------- MATH-500
 def math(path: str, splits: int, reps: int, seed: int, n: int = 16, k: int = 1) -> tuple[pd.DataFrame, dict]:
     d = pd.read_csv(path)
     c, big_n = d.n_correct.to_numpy(), int(d.n_samples.iloc[0])
@@ -309,7 +273,7 @@ def plot(df: pd.DataFrame, out: str) -> None:
         g = df[(df.benchmark == b) & (df.k == k)].dropna(subset=[col]).groupby("tier", sort=False)
         px, py = g[col].median(), g.measured.median()
         xe = np.vstack([px - g[col].quantile(0.05), g[col].quantile(0.95) - px])
-        if b == "SWE-bench Verified":  # spread across held-out submissions (IQR), not across pilot splits
+        if b == "SWE-bench Verified":
             ye = np.vstack([py - g.measured_q25.median(), g.measured_q75.median() - py])
         else:
             ye = np.vstack([py - g.measured.quantile(0.05), g.measured.quantile(0.95) - py])

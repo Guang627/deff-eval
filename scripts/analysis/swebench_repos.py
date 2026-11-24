@@ -1,21 +1,3 @@
-"""SWE-bench Verified: same task budget, fewer or more repositories. pass@1 only, CPU only.
-
-Data: per-task resolved lists of public submissions (github.com/SWE-bench/experiments,
-evaluation/verified/*/results/results.json). Each submission is one model+agent run, one attempt per task.
-`--build` turns a checkout into resolved_matrix.csv.gz (submission x instance), saved in the repo.
-
-For every submission separately, each draw builds a 40-task benchmark:
-    natural : 40 tasks at random from all 500 (repositories in their natural proportions)
-    8x5, 4x10, 2x20, 1x40 : R repositories x V tasks each; repositories drawn uniformly among those with at least V
-        tasks, tasks without replacement within repository.
-Target (fixed in advance): the submission's resolve rate over all 500 tasks (task-equal). Sensitivity target:
-mean over the 12 repositories of the per-repository resolve rate (repository-equal).
-Difficulty: 3 strata by the share of the *other* submissions that solved the task (terciles); the estimate
-"poststrat" reweights the drawn tasks to the pool's difficulty mix, "plain" is the raw mean.
-Intervals (95%): iid bootstrap, difficulty-stratified bootstrap (poststrat estimate), repository-cluster bootstrap,
-Wilson. Repository share of variance (one-way ANOVA on 0/1 outcomes) is reported per submission.
-"""
-
 from __future__ import annotations
 
 import argparse
@@ -45,7 +27,6 @@ def build(src: str) -> pd.DataFrame:
 
 
 def boot_mean(y: np.ndarray, units: list[list[np.ndarray]], wts: np.ndarray | None, rng, n_boot: int) -> np.ndarray:
-    """Percentile CI. units: per stratum, list of index arrays. wts: stratum weights (None = pooled mean)."""
     out = []
     for us in units:
         sums = np.array([y[u].sum() for u in us])
@@ -90,11 +71,10 @@ def main() -> None:
         rng = np.random.default_rng([a.seed, si])
         y = Y.loc[s].to_numpy(float)
         others = np.delete(Yall, Y.index.get_loc(s), axis=0).mean(0)
-        strat = np.digitize(others, np.quantile(others, [1 / 3, 2 / 3]))  # 0 hard .. 2 easy
+        strat = np.digitize(others, np.quantile(others, [1 / 3, 2 / 3]))
         wts = np.bincount(strat, minlength=3) / y.size
         t_task = y.mean()
         t_repo = np.mean([y[m].mean() for m in members])
-        # repository share of variance (ANOVA, unbalanced: n0 correction)
         k, n_tot = repos.size, y.size
         msb = sum(m.size * (y[m].mean() - t_task) ** 2 for m in members) / (k - 1)
         msw = sum(((y[m] - y[m].mean()) ** 2).sum() for m in members) / (n_tot - k)

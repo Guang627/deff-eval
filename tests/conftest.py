@@ -13,7 +13,6 @@ def rng():
 
 @pytest.fixture
 def counts(rng):
-    """Success counts for 400 problems, n = 10, with atoms at 0 and n."""
     p = rng.beta(0.5, 0.9, 400)
     p[:60] = 0.0
     p[60:90] = 1.0
