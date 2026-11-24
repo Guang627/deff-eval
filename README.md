@@ -84,15 +84,14 @@ pipeline on CPU with a mock model.
 
 ## Running generation on AWS
 
-The MATH-500 and GSM-Symbolic counts in `results/` were generated on AWS: one-shot EC2 **spot** `g5.xlarge` workers
-(1× A10G) in `us-east-2`, provisioned with Terraform, running the public `vllm/vllm-openai:v0.10.0` image with this
-repo installed from a code tarball in S3.
+The MATH-500 and GSM-Symbolic counts in `results/` were generated on AWS EC2 `g5.xlarge` GPU instances (1× A10G) in
+`us-east-2`, provisioned with Terraform and running the public `vllm/vllm-openai:v0.10.0` image with this repo
+installed from a code tarball in S3:
 
-| run | generations | notes |
-|---|---|---|
-| MATH-500 | 500 problems × 200 = 100,000 | ~3,700 output tokens/s; one spot interruption at 250/500, resumed from S3 |
-| GSM-Symbolic pilot | 100 problems × 64 = 6,400 | 11 min; checked dataset schema, grading and output length |
-| GSM-Symbolic | 5,000 problems × 64 = 320,000 | ~9 h; spot interruptions, resumed from S3 without redoing finished problems |
+* MATH-500: 500 problems × 200 attempts = 100,000 generations;
+* GSM-Symbolic: 5,000 problems × 64 attempts = 320,000 generations, after a 100-problem pilot.
+
+Generation runs on EC2 spot GPUs and checkpoints to S3, so an interrupted job resumes where it stopped.
 
 What Terraform (`infra/terraform/`) creates:
 
@@ -104,9 +103,8 @@ What Terraform (`infra/terraform/`) creates:
   no inbound ports or SSH keys (Session Manager only).
 
 The worker (`infra/terraform/user_data.sh.tftpl`) pulls earlier partial results from S3, syncs progress and the log
-back every 10 minutes, runs `passk generate`, writes `EXIT_STATUS`, uploads, and terminates itself. A reclaimed spot
-instance therefore loses at most the last few minutes of work: rerunning `terraform apply` with the same `run_name`
-resumes. `scripts/worker_install.sh` pins every package the vLLM image already ships, so installing this repo cannot
+back every 10 minutes, runs `passk generate`, writes `EXIT_STATUS`, uploads, and terminates itself. Rerunning
+`terraform apply` with the same `run_name` resumes a stopped run. `scripts/worker_install.sh` pins every package the vLLM image already ships, so installing this repo cannot
 break the image's vllm / torch / transformers stack.
 
 ```bash
