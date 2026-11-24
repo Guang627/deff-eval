@@ -1,0 +1,12 @@
+{"unique_id": "toy/1", "problem": "What is $2+3$?", "answer": "5", "subject": "Prealgebra", "level": 1}
+{"unique_id": "toy/2", "problem": "Compute $\\frac{1}{2}+\\frac{1}{4}$.", "answer": "\\frac{3}{4}", "subject": "Prealgebra", "level": 2}
+{"unique_id": "toy/3", "problem": "Solve $2x+4=10$ for $x$.", "answer": "3", "subject": "Algebra", "level": 1}
+{"unique_id": "toy/4", "problem": "What is $\\sqrt{144}$?", "answer": "12", "subject": "Algebra", "level": 1}
+{"unique_id": "toy/5", "problem": "How many positive divisors does $12$ have?", "answer": "6", "subject": "Number Theory", "level": 2}
+{"unique_id": "toy/6", "problem": "What is the remainder when $100$ is divided by $7$?", "answer": "2", "subject": "Number Theory", "level": 2}
+{"unique_id": "toy/7", "problem": "How many ways can 3 people be seated in a row?", "answer": "6", "subject": "Counting & Probability", "level": 1}
+{"unique_id": "toy/8", "problem": "What is $\\binom{5}{2}$?", "answer": "10", "subject": "Counting & Probability", "level": 2}
+{"unique_id": "toy/9", "problem": "What is the area of a square with side $4$?", "answer": "16", "subject": "Geometry", "level": 1}
+{"unique_id": "toy/10", "problem": "A right triangle has legs 3 and 4. What is its hypotenuse?", "answer": "5", "subject": "Geometry", "level": 1}
+{"unique_id": "toy/11", "problem": "Find the sum of the roots of $x^2-5x+6=0$.", "answer": "5", "subject": "Intermediate Algebra", "level": 3}
+{"unique_id": "toy/12", "problem": "What is $\\cos(0)$?", "answer": "1", "subject": "Precalculus", "level": 1}

@@ -1,0 +1,8 @@
+# CPU-only end-to-end check: mock "model" on the bundled toy problems.
+backend: mock
+model: mock
+dataset: toy
+n_samples: 200
+batch_problems: 4
+output_dir: outputs/smoke/generate
+track: false

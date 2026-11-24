@@ -1,0 +1,57 @@
+{
+ "N": 64,
+ "n": 16,
+ "ks": [
+  1,
+  4,
+  8,
+  16
+ ],
+ "reps": 1000,
+ "boot": 1000,
+ "synthetic": false,
+ "tiers": {
+  "100x1": {
+   "templates": [
+    40,
+    30,
+    30
+   ],
+   "variants": 1
+  },
+  "50x2": {
+   "templates": [
+    20,
+    15,
+    15
+   ],
+   "variants": 2
+  },
+  "20x5": {
+   "templates": [
+    8,
+    6,
+    6
+   ],
+   "variants": 5
+  },
+  "10x10": {
+   "templates": [
+    4,
+    3,
+    3
+   ],
+   "variants": 10
+  }
+ },
+ "icc_template": {
+  "main": 0.751,
+  "p1": 0.741,
+  "p2": 0.841
+ },
+ "weights": {
+  "main": 0.4,
+  "p1": 0.3,
+  "p2": 0.3
+ }
+}

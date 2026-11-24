@@ -1,0 +1,501 @@
+problem_id,subject,level,cluster,n_samples,n_correct
+test/precalculus/807.json,Precalculus,2,Precalculus|L2,200,200
+test/intermediate_algebra/1994.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,199
+test/algebra/2584.json,Algebra,3,Algebra|L3,200,200
+test/number_theory/572.json,Number Theory,3,Number Theory|L3,200,200
+test/algebra/1349.json,Algebra,2,Algebra|L2,200,199
+test/prealgebra/1622.json,Prealgebra,2,Prealgebra|L2,200,200
+test/number_theory/515.json,Number Theory,3,Number Theory|L3,200,200
+test/precalculus/927.json,Precalculus,4,Precalculus|L4,200,173
+test/algebra/2036.json,Algebra,3,Algebra|L3,200,200
+test/prealgebra/1139.json,Prealgebra,5,Prealgebra|L5,200,19
+test/number_theory/1032.json,Number Theory,3,Number Theory|L3,200,200
+test/intermediate_algebra/1197.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/number_theory/737.json,Number Theory,5,Number Theory|L5,200,187
+test/geometry/248.json,Geometry,2,Geometry|L2,200,200
+test/precalculus/1303.json,Precalculus,1,Precalculus|L1,200,3
+test/precalculus/990.json,Precalculus,5,Precalculus|L5,200,180
+test/intermediate_algebra/134.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,200
+test/precalculus/1199.json,Precalculus,4,Precalculus|L4,200,83
+test/geometry/434.json,Geometry,1,Geometry|L1,200,63
+test/intermediate_algebra/1000.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,197
+test/algebra/1098.json,Algebra,3,Algebra|L3,200,200
+test/intermediate_algebra/607.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,75
+test/algebra/1837.json,Algebra,5,Algebra|L5,200,112
+test/algebra/2193.json,Algebra,5,Algebra|L5,200,200
+test/algebra/2427.json,Algebra,5,Algebra|L5,200,148
+test/intermediate_algebra/1388.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,33
+test/counting_and_probability/525.json,Counting & Probability,5,Counting & Probability|L5,200,78
+test/prealgebra/1840.json,Prealgebra,2,Prealgebra|L2,200,198
+test/precalculus/779.json,Precalculus,2,Precalculus|L2,200,200
+test/counting_and_probability/666.json,Counting & Probability,2,Counting & Probability|L2,200,186
+test/number_theory/864.json,Number Theory,3,Number Theory|L3,200,200
+test/prealgebra/1302.json,Prealgebra,4,Prealgebra|L4,200,200
+test/counting_and_probability/134.json,Counting & Probability,4,Counting & Probability|L4,200,196
+test/algebra/1072.json,Algebra,4,Algebra|L4,200,20
+test/counting_and_probability/119.json,Counting & Probability,4,Counting & Probability|L4,200,190
+test/number_theory/627.json,Number Theory,2,Number Theory|L2,200,200
+test/intermediate_algebra/428.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,146
+test/geometry/967.json,Geometry,3,Geometry|L3,200,200
+test/algebra/24.json,Algebra,1,Algebra|L1,200,200
+test/number_theory/45.json,Number Theory,3,Number Theory|L3,200,198
+test/prealgebra/930.json,Prealgebra,2,Prealgebra|L2,200,200
+test/geometry/627.json,Geometry,4,Geometry|L4,200,59
+test/algebra/2214.json,Algebra,2,Algebra|L2,200,199
+test/intermediate_algebra/1454.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,5
+test/prealgebra/1558.json,Prealgebra,5,Prealgebra|L5,200,200
+test/geometry/178.json,Geometry,3,Geometry|L3,200,200
+test/precalculus/285.json,Precalculus,2,Precalculus|L2,200,162
+test/algebra/305.json,Algebra,5,Algebra|L5,200,199
+test/algebra/1265.json,Algebra,2,Algebra|L2,200,200
+test/prealgebra/1388.json,Prealgebra,4,Prealgebra|L4,200,200
+test/number_theory/1055.json,Number Theory,5,Number Theory|L5,200,116
+test/intermediate_algebra/1217.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,198
+test/prealgebra/951.json,Prealgebra,5,Prealgebra|L5,200,195
+test/precalculus/1105.json,Precalculus,2,Precalculus|L2,200,200
+test/prealgebra/572.json,Prealgebra,2,Prealgebra|L2,200,200
+test/algebra/187.json,Algebra,4,Algebra|L4,200,200
+test/algebra/769.json,Algebra,3,Algebra|L3,200,200
+test/intermediate_algebra/1168.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,200
+test/algebra/722.json,Algebra,1,Algebra|L1,200,51
+test/prealgebra/1247.json,Prealgebra,2,Prealgebra|L2,200,200
+test/intermediate_algebra/956.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/intermediate_algebra/1247.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/precalculus/675.json,Precalculus,5,Precalculus|L5,200,71
+test/intermediate_algebra/279.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,60
+test/precalculus/1146.json,Precalculus,4,Precalculus|L4,200,49
+test/prealgebra/1747.json,Prealgebra,1,Prealgebra|L1,200,200
+test/algebra/2046.json,Algebra,3,Algebra|L3,200,200
+test/prealgebra/1233.json,Prealgebra,4,Prealgebra|L4,200,200
+test/precalculus/1313.json,Precalculus,4,Precalculus|L4,200,64
+test/intermediate_algebra/207.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,200
+test/number_theory/46.json,Number Theory,2,Number Theory|L2,200,200
+test/number_theory/516.json,Number Theory,4,Number Theory|L4,200,132
+test/geometry/456.json,Geometry,2,Geometry|L2,200,200
+test/algebra/2253.json,Algebra,4,Algebra|L4,200,200
+test/precalculus/24313.json,Precalculus,2,Precalculus|L2,200,200
+test/counting_and_probability/1114.json,Counting & Probability,4,Counting & Probability|L4,200,200
+test/intermediate_algebra/623.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,199
+test/algebra/1004.json,Algebra,1,Algebra|L1,200,200
+test/intermediate_algebra/47.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,188
+test/prealgebra/192.json,Prealgebra,1,Prealgebra|L1,200,200
+test/intermediate_algebra/1849.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/algebra/1035.json,Algebra,3,Algebra|L3,200,200
+test/algebra/2700.json,Algebra,5,Algebra|L5,200,59
+test/intermediate_algebra/2046.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,199
+test/algebra/893.json,Algebra,4,Algebra|L4,200,199
+test/geometry/353.json,Geometry,4,Geometry|L4,200,198
+test/prealgebra/307.json,Prealgebra,1,Prealgebra|L1,200,200
+test/algebra/567.json,Algebra,1,Algebra|L1,200,200
+test/algebra/892.json,Algebra,5,Algebra|L5,200,155
+test/number_theory/357.json,Number Theory,4,Number Theory|L4,200,98
+test/prealgebra/1761.json,Prealgebra,3,Prealgebra|L3,200,156
+test/algebra/2023.json,Algebra,3,Algebra|L3,200,159
+test/counting_and_probability/377.json,Counting & Probability,4,Counting & Probability|L4,200,61
+test/algebra/873.json,Algebra,4,Algebra|L4,200,195
+test/prealgebra/1646.json,Prealgebra,5,Prealgebra|L5,200,9
+test/precalculus/34.json,Precalculus,2,Precalculus|L2,200,200
+test/intermediate_algebra/662.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/prealgebra/105.json,Prealgebra,1,Prealgebra|L1,200,199
+test/prealgebra/1924.json,Prealgebra,2,Prealgebra|L2,200,200
+test/precalculus/1300.json,Precalculus,3,Precalculus|L3,200,197
+test/geometry/183.json,Geometry,5,Geometry|L5,200,41
+test/intermediate_algebra/582.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,76
+test/intermediate_algebra/431.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,200
+test/intermediate_algebra/558.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/intermediate_algebra/362.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,24
+test/prealgebra/1804.json,Prealgebra,3,Prealgebra|L3,200,4
+test/intermediate_algebra/515.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,200
+test/number_theory/914.json,Number Theory,2,Number Theory|L2,200,195
+test/intermediate_algebra/894.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,176
+test/precalculus/44.json,Precalculus,5,Precalculus|L5,200,4
+test/intermediate_algebra/345.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,2
+test/counting_and_probability/23957.json,Counting & Probability,3,Counting & Probability|L3,200,184
+test/algebra/2058.json,Algebra,4,Algebra|L4,200,161
+test/algebra/2593.json,Algebra,2,Algebra|L2,200,200
+test/intermediate_algebra/1898.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/counting_and_probability/1060.json,Counting & Probability,2,Counting & Probability|L2,200,10
+test/algebra/2157.json,Algebra,2,Algebra|L2,200,200
+test/algebra/2251.json,Algebra,2,Algebra|L2,200,200
+test/intermediate_algebra/232.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,187
+test/prealgebra/1733.json,Prealgebra,3,Prealgebra|L3,200,117
+test/intermediate_algebra/128.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,97
+test/prealgebra/505.json,Prealgebra,2,Prealgebra|L2,200,200
+test/algebra/1332.json,Algebra,3,Algebra|L3,200,200
+test/geometry/283.json,Geometry,4,Geometry|L4,200,31
+test/algebra/972.json,Algebra,4,Algebra|L4,200,200
+test/algebra/2232.json,Algebra,4,Algebra|L4,200,200
+test/intermediate_algebra/1063.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,41
+test/number_theory/847.json,Number Theory,3,Number Theory|L3,200,200
+test/algebra/661.json,Algebra,3,Algebra|L3,200,195
+test/geometry/1140.json,Geometry,5,Geometry|L5,200,31
+test/number_theory/753.json,Number Theory,4,Number Theory|L4,200,191
+test/algebra/246.json,Algebra,4,Algebra|L4,200,199
+test/prealgebra/1686.json,Prealgebra,3,Prealgebra|L3,200,200
+test/prealgebra/1807.json,Prealgebra,3,Prealgebra|L3,200,200
+test/intermediate_algebra/1126.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,199
+test/prealgebra/1297.json,Prealgebra,5,Prealgebra|L5,200,198
+test/intermediate_algebra/2022.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,173
+test/number_theory/1257.json,Number Theory,4,Number Theory|L4,200,200
+test/counting_and_probability/430.json,Counting & Probability,4,Counting & Probability|L4,200,3
+test/intermediate_algebra/1151.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/number_theory/156.json,Number Theory,4,Number Theory|L4,200,199
+test/number_theory/612.json,Number Theory,1,Number Theory|L1,200,200
+test/counting_and_probability/159.json,Counting & Probability,5,Counting & Probability|L5,200,105
+test/precalculus/477.json,Precalculus,3,Precalculus|L3,200,200
+test/precalculus/43.json,Precalculus,1,Precalculus|L1,200,200
+test/intermediate_algebra/1408.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,62
+test/algebra/1519.json,Algebra,3,Algebra|L3,200,200
+test/intermediate_algebra/966.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,25
+test/algebra/988.json,Algebra,1,Algebra|L1,200,200
+test/number_theory/931.json,Number Theory,2,Number Theory|L2,200,179
+test/intermediate_algebra/964.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,18
+test/precalculus/986.json,Precalculus,5,Precalculus|L5,200,163
+test/geometry/172.json,Geometry,5,Geometry|L5,200,57
+test/counting_and_probability/230.json,Counting & Probability,4,Counting & Probability|L4,200,200
+test/geometry/880.json,Geometry,5,Geometry|L5,200,0
+test/counting_and_probability/803.json,Counting & Probability,4,Counting & Probability|L4,200,200
+test/precalculus/117.json,Precalculus,3,Precalculus|L3,200,13
+test/intermediate_algebra/1410.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,199
+test/algebra/2570.json,Algebra,4,Algebra|L4,200,200
+test/algebra/621.json,Algebra,4,Algebra|L4,200,199
+test/number_theory/521.json,Number Theory,2,Number Theory|L2,200,200
+test/algebra/1255.json,Algebra,2,Algebra|L2,200,200
+test/prealgebra/1655.json,Prealgebra,5,Prealgebra|L5,200,200
+test/algebra/2517.json,Algebra,5,Algebra|L5,200,138
+test/precalculus/697.json,Precalculus,2,Precalculus|L2,200,15
+test/prealgebra/1356.json,Prealgebra,4,Prealgebra|L4,200,164
+test/prealgebra/1003.json,Prealgebra,5,Prealgebra|L5,200,129
+test/algebra/478.json,Algebra,1,Algebra|L1,200,200
+test/counting_and_probability/181.json,Counting & Probability,5,Counting & Probability|L5,200,1
+test/geometry/802.json,Geometry,2,Geometry|L2,200,200
+test/algebra/297.json,Algebra,5,Algebra|L5,200,24
+test/prealgebra/1272.json,Prealgebra,1,Prealgebra|L1,200,200
+test/algebra/841.json,Algebra,1,Algebra|L1,200,200
+test/algebra/686.json,Algebra,5,Algebra|L5,200,188
+test/algebra/351.json,Algebra,3,Algebra|L3,200,200
+test/intermediate_algebra/991.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,198
+test/number_theory/598.json,Number Theory,3,Number Theory|L3,200,187
+test/geometry/65.json,Geometry,3,Geometry|L3,200,21
+test/prealgebra/1113.json,Prealgebra,2,Prealgebra|L2,200,200
+test/precalculus/659.json,Precalculus,4,Precalculus|L4,200,198
+test/prealgebra/1908.json,Prealgebra,3,Prealgebra|L3,200,138
+test/algebra/1275.json,Algebra,3,Algebra|L3,200,199
+test/prealgebra/1922.json,Prealgebra,2,Prealgebra|L2,200,200
+test/algebra/1082.json,Algebra,4,Algebra|L4,200,200
+test/intermediate_algebra/183.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,10
+test/algebra/1214.json,Algebra,1,Algebra|L1,200,200
+test/number_theory/978.json,Number Theory,4,Number Theory|L4,200,147
+test/algebra/2199.json,Algebra,1,Algebra|L1,200,200
+test/algebra/733.json,Algebra,5,Algebra|L5,200,98
+test/geometry/702.json,Geometry,5,Geometry|L5,200,5
+test/counting_and_probability/51.json,Counting & Probability,5,Counting & Probability|L5,200,120
+test/algebra/109.json,Algebra,2,Algebra|L2,200,200
+test/geometry/221.json,Geometry,3,Geometry|L3,200,200
+test/intermediate_algebra/1422.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/intermediate_algebra/2196.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,78
+test/intermediate_algebra/591.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,200
+test/algebra/1937.json,Algebra,1,Algebra|L1,200,198
+test/number_theory/838.json,Number Theory,5,Number Theory|L5,200,186
+test/counting_and_probability/508.json,Counting & Probability,3,Counting & Probability|L3,200,200
+test/prealgebra/1907.json,Prealgebra,2,Prealgebra|L2,200,200
+test/prealgebra/2086.json,Prealgebra,4,Prealgebra|L4,200,198
+test/number_theory/149.json,Number Theory,4,Number Theory|L4,200,200
+test/algebra/291.json,Algebra,5,Algebra|L5,200,198
+test/intermediate_algebra/1555.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/intermediate_algebra/1510.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/precalculus/263.json,Precalculus,3,Precalculus|L3,200,200
+test/precalculus/541.json,Precalculus,2,Precalculus|L2,200,200
+test/counting_and_probability/389.json,Counting & Probability,2,Counting & Probability|L2,200,200
+test/number_theory/1201.json,Number Theory,3,Number Theory|L3,200,200
+test/number_theory/234.json,Number Theory,2,Number Theory|L2,200,170
+test/prealgebra/378.json,Prealgebra,4,Prealgebra|L4,200,117
+test/prealgebra/1555.json,Prealgebra,2,Prealgebra|L2,200,200
+test/algebra/2102.json,Algebra,3,Algebra|L3,200,190
+test/intermediate_algebra/102.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,0
+test/counting_and_probability/765.json,Counting & Probability,5,Counting & Probability|L5,200,27
+test/algebra/907.json,Algebra,4,Algebra|L4,200,200
+test/prealgebra/1436.json,Prealgebra,4,Prealgebra|L4,200,188
+test/number_theory/417.json,Number Theory,4,Number Theory|L4,200,185
+test/algebra/864.json,Algebra,2,Algebra|L2,200,200
+test/counting_and_probability/282.json,Counting & Probability,4,Counting & Probability|L4,200,22
+test/prealgebra/1961.json,Prealgebra,5,Prealgebra|L5,200,56
+test/number_theory/89.json,Number Theory,3,Number Theory|L3,200,198
+test/geometry/547.json,Geometry,4,Geometry|L4,200,30
+test/number_theory/183.json,Number Theory,3,Number Theory|L3,200,171
+test/precalculus/190.json,Precalculus,4,Precalculus|L4,200,35
+test/algebra/2159.json,Algebra,3,Algebra|L3,200,200
+test/counting_and_probability/71.json,Counting & Probability,3,Counting & Probability|L3,200,200
+test/precalculus/819.json,Precalculus,3,Precalculus|L3,200,200
+test/precalculus/1056.json,Precalculus,4,Precalculus|L4,200,172
+test/prealgebra/2057.json,Prealgebra,4,Prealgebra|L4,200,200
+test/intermediate_algebra/986.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,197
+test/algebra/1578.json,Algebra,4,Algebra|L4,200,200
+test/intermediate_algebra/1354.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,136
+test/precalculus/441.json,Precalculus,2,Precalculus|L2,200,200
+test/intermediate_algebra/1837.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,158
+test/prealgebra/153.json,Prealgebra,4,Prealgebra|L4,200,200
+test/precalculus/989.json,Precalculus,4,Precalculus|L4,200,33
+test/intermediate_algebra/337.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,197
+test/algebra/975.json,Algebra,5,Algebra|L5,200,183
+test/geometry/229.json,Geometry,5,Geometry|L5,200,15
+test/prealgebra/874.json,Prealgebra,4,Prealgebra|L4,200,1
+test/algebra/1143.json,Algebra,5,Algebra|L5,200,200
+test/algebra/2626.json,Algebra,5,Algebra|L5,200,0
+test/geometry/254.json,Geometry,2,Geometry|L2,200,200
+test/prealgebra/1251.json,Prealgebra,5,Prealgebra|L5,200,196
+test/intermediate_algebra/1210.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,1
+test/algebra/1787.json,Algebra,2,Algebra|L2,200,122
+test/intermediate_algebra/1123.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/precalculus/920.json,Precalculus,4,Precalculus|L4,200,22
+test/number_theory/1065.json,Number Theory,4,Number Theory|L4,200,86
+test/algebra/1934.json,Algebra,4,Algebra|L4,200,197
+test/counting_and_probability/894.json,Counting & Probability,5,Counting & Probability|L5,200,185
+test/algebra/2064.json,Algebra,5,Algebra|L5,200,200
+test/prealgebra/1458.json,Prealgebra,3,Prealgebra|L3,200,200
+test/counting_and_probability/1009.json,Counting & Probability,5,Counting & Probability|L5,200,200
+test/precalculus/452.json,Precalculus,2,Precalculus|L2,200,200
+test/prealgebra/1995.json,Prealgebra,3,Prealgebra|L3,200,200
+test/geometry/473.json,Geometry,4,Geometry|L4,200,200
+test/algebra/694.json,Algebra,3,Algebra|L3,200,200
+test/intermediate_algebra/149.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,200
+test/precalculus/580.json,Precalculus,3,Precalculus|L3,200,200
+test/geometry/347.json,Geometry,3,Geometry|L3,200,200
+test/prealgebra/1317.json,Prealgebra,1,Prealgebra|L1,200,200
+test/geometry/483.json,Geometry,4,Geometry|L4,200,200
+test/geometry/826.json,Geometry,5,Geometry|L5,200,0
+test/algebra/524.json,Algebra,2,Algebra|L2,200,200
+test/prealgebra/1742.json,Prealgebra,3,Prealgebra|L3,200,200
+test/geometry/226.json,Geometry,1,Geometry|L1,200,179
+test/number_theory/466.json,Number Theory,1,Number Theory|L1,200,200
+test/counting_and_probability/913.json,Counting & Probability,3,Counting & Probability|L3,200,200
+test/algebra/2551.json,Algebra,1,Algebra|L1,200,200
+test/number_theory/634.json,Number Theory,4,Number Theory|L4,200,196
+test/number_theory/533.json,Number Theory,4,Number Theory|L4,200,168
+test/prealgebra/993.json,Prealgebra,4,Prealgebra|L4,200,191
+test/geometry/686.json,Geometry,5,Geometry|L5,200,15
+test/algebra/346.json,Algebra,2,Algebra|L2,200,200
+test/algebra/1282.json,Algebra,5,Algebra|L5,200,183
+test/prealgebra/1834.json,Prealgebra,4,Prealgebra|L4,200,200
+test/number_theory/691.json,Number Theory,3,Number Theory|L3,200,200
+test/prealgebra/1512.json,Prealgebra,5,Prealgebra|L5,200,76
+test/number_theory/1287.json,Number Theory,4,Number Theory|L4,200,200
+test/prealgebra/260.json,Prealgebra,4,Prealgebra|L4,200,175
+test/algebra/1184.json,Algebra,4,Algebra|L4,200,44
+test/prealgebra/1787.json,Prealgebra,3,Prealgebra|L3,200,200
+test/precalculus/768.json,Precalculus,5,Precalculus|L5,200,46
+test/intermediate_algebra/1411.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,3
+test/intermediate_algebra/960.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/number_theory/631.json,Number Theory,5,Number Theory|L5,200,190
+test/precalculus/1172.json,Precalculus,5,Precalculus|L5,200,115
+test/intermediate_algebra/1300.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/algebra/634.json,Algebra,3,Algebra|L3,200,188
+test/counting_and_probability/25149.json,Counting & Probability,4,Counting & Probability|L4,200,131
+test/intermediate_algebra/90.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,61
+test/algebra/2486.json,Algebra,5,Algebra|L5,200,200
+test/number_theory/488.json,Number Theory,4,Number Theory|L4,200,134
+test/precalculus/1201.json,Precalculus,3,Precalculus|L3,200,11
+test/intermediate_algebra/754.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,64
+test/number_theory/1172.json,Number Theory,4,Number Theory|L4,200,200
+test/precalculus/881.json,Precalculus,4,Precalculus|L4,200,167
+test/geometry/1097.json,Geometry,4,Geometry|L4,200,150
+test/counting_and_probability/339.json,Counting & Probability,4,Counting & Probability|L4,200,200
+test/prealgebra/1044.json,Prealgebra,5,Prealgebra|L5,200,38
+test/prealgebra/465.json,Prealgebra,4,Prealgebra|L4,200,73
+test/geometry/965.json,Geometry,5,Geometry|L5,200,0
+test/intermediate_algebra/446.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/algebra/2257.json,Algebra,4,Algebra|L4,200,200
+test/intermediate_algebra/1544.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,6
+test/precalculus/695.json,Precalculus,2,Precalculus|L2,200,198
+test/geometry/711.json,Geometry,5,Geometry|L5,200,3
+test/number_theory/203.json,Number Theory,3,Number Theory|L3,200,45
+test/algebra/1842.json,Algebra,2,Algebra|L2,200,200
+test/number_theory/911.json,Number Theory,4,Number Theory|L4,200,200
+test/intermediate_algebra/1714.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,200
+test/prealgebra/1423.json,Prealgebra,5,Prealgebra|L5,200,199
+test/geometry/1108.json,Geometry,2,Geometry|L2,200,200
+test/algebra/791.json,Algebra,4,Algebra|L4,200,199
+test/algebra/276.json,Algebra,2,Algebra|L2,200,195
+test/intermediate_algebra/2152.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,10
+test/algebra/2735.json,Algebra,2,Algebra|L2,200,200
+test/algebra/425.json,Algebra,3,Algebra|L3,200,200
+test/geometry/947.json,Geometry,5,Geometry|L5,200,187
+test/prealgebra/954.json,Prealgebra,5,Prealgebra|L5,200,195
+test/algebra/1936.json,Algebra,3,Algebra|L3,200,200
+test/counting_and_probability/870.json,Counting & Probability,5,Counting & Probability|L5,200,200
+test/geometry/465.json,Geometry,4,Geometry|L4,200,147
+test/geometry/73.json,Geometry,2,Geometry|L2,200,200
+test/precalculus/742.json,Precalculus,2,Precalculus|L2,200,180
+test/intermediate_algebra/117.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,19
+test/algebra/2176.json,Algebra,5,Algebra|L5,200,77
+test/prealgebra/1973.json,Prealgebra,4,Prealgebra|L4,200,200
+test/counting_and_probability/216.json,Counting & Probability,5,Counting & Probability|L5,200,200
+test/algebra/509.json,Algebra,5,Algebra|L5,200,152
+test/intermediate_algebra/190.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,116
+test/intermediate_algebra/776.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,174
+test/algebra/1457.json,Algebra,3,Algebra|L3,200,200
+test/number_theory/483.json,Number Theory,4,Number Theory|L4,200,200
+test/algebra/2592.json,Algebra,1,Algebra|L1,200,200
+test/prealgebra/1730.json,Prealgebra,3,Prealgebra|L3,200,200
+test/number_theory/368.json,Number Theory,3,Number Theory|L3,200,200
+test/intermediate_algebra/1566.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,170
+test/precalculus/801.json,Precalculus,3,Precalculus|L3,200,10
+test/algebra/858.json,Algebra,4,Algebra|L4,200,200
+test/prealgebra/1238.json,Prealgebra,3,Prealgebra|L3,200,200
+test/counting_and_probability/737.json,Counting & Probability,2,Counting & Probability|L2,200,199
+test/intermediate_algebra/1572.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,200
+test/algebra/1529.json,Algebra,3,Algebra|L3,200,200
+test/algebra/1338.json,Algebra,4,Algebra|L4,200,200
+test/algebra/1547.json,Algebra,3,Algebra|L3,200,198
+test/counting_and_probability/116.json,Counting & Probability,2,Counting & Probability|L2,200,194
+test/counting_and_probability/238.json,Counting & Probability,4,Counting & Probability|L4,200,0
+test/number_theory/686.json,Number Theory,2,Number Theory|L2,200,200
+test/precalculus/826.json,Precalculus,3,Precalculus|L3,200,25
+test/precalculus/1281.json,Precalculus,4,Precalculus|L4,200,0
+test/counting_and_probability/1014.json,Counting & Probability,4,Counting & Probability|L4,200,200
+test/algebra/529.json,Algebra,4,Algebra|L4,200,198
+test/intermediate_algebra/1166.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,4
+test/algebra/1078.json,Algebra,5,Algebra|L5,200,195
+test/prealgebra/1353.json,Prealgebra,5,Prealgebra|L5,200,117
+test/intermediate_algebra/860.json,Intermediate Algebra,2,Intermediate Algebra|L2,200,52
+test/intermediate_algebra/1407.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,139
+test/precalculus/96.json,Precalculus,3,Precalculus|L3,200,154
+test/intermediate_algebra/1405.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,172
+test/counting_and_probability/14.json,Counting & Probability,1,Counting & Probability|L1,200,200
+test/algebra/251.json,Algebra,2,Algebra|L2,200,200
+test/intermediate_algebra/690.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,186
+test/number_theory/820.json,Number Theory,5,Number Theory|L5,200,60
+test/number_theory/109.json,Number Theory,4,Number Theory|L4,200,197
+test/algebra/1199.json,Algebra,4,Algebra|L4,200,200
+test/geometry/106.json,Geometry,2,Geometry|L2,200,200
+test/prealgebra/1187.json,Prealgebra,2,Prealgebra|L2,200,5
+test/precalculus/1289.json,Precalculus,1,Precalculus|L1,200,200
+test/intermediate_algebra/955.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,44
+test/geometry/846.json,Geometry,2,Geometry|L2,200,1
+test/algebra/2264.json,Algebra,5,Algebra|L5,200,200
+test/algebra/1303.json,Algebra,1,Algebra|L1,200,200
+test/number_theory/427.json,Number Theory,5,Number Theory|L5,200,160
+test/geometry/538.json,Geometry,4,Geometry|L4,200,175
+test/number_theory/1185.json,Number Theory,3,Number Theory|L3,200,170
+test/prealgebra/1743.json,Prealgebra,3,Prealgebra|L3,200,200
+test/prealgebra/1865.json,Prealgebra,4,Prealgebra|L4,200,92
+test/intermediate_algebra/1992.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,104
+test/counting_and_probability/188.json,Counting & Probability,5,Counting & Probability|L5,200,36
+test/intermediate_algebra/1111.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,174
+test/algebra/101.json,Algebra,4,Algebra|L4,200,200
+test/prealgebra/1298.json,Prealgebra,2,Prealgebra|L2,200,200
+test/prealgebra/2066.json,Prealgebra,5,Prealgebra|L5,200,91
+test/algebra/170.json,Algebra,3,Algebra|L3,200,200
+test/algebra/849.json,Algebra,1,Algebra|L1,200,200
+test/algebra/1031.json,Algebra,5,Algebra|L5,200,200
+test/geometry/795.json,Geometry,3,Geometry|L3,200,123
+test/algebra/853.json,Algebra,5,Algebra|L5,200,135
+test/algebra/2277.json,Algebra,5,Algebra|L5,200,179
+test/precalculus/902.json,Precalculus,5,Precalculus|L5,200,0
+test/algebra/518.json,Algebra,3,Algebra|L3,200,198
+test/intermediate_algebra/1791.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,142
+test/algebra/114.json,Algebra,1,Algebra|L1,200,200
+test/prealgebra/631.json,Prealgebra,3,Prealgebra|L3,200,179
+test/prealgebra/977.json,Prealgebra,2,Prealgebra|L2,200,200
+test/prealgebra/1991.json,Prealgebra,4,Prealgebra|L4,200,3
+test/prealgebra/1784.json,Prealgebra,2,Prealgebra|L2,200,200
+test/geometry/817.json,Geometry,5,Geometry|L5,200,35
+test/intermediate_algebra/1806.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/precalculus/1291.json,Precalculus,3,Precalculus|L3,200,185
+test/number_theory/928.json,Number Theory,4,Number Theory|L4,200,33
+test/counting_and_probability/761.json,Counting & Probability,1,Counting & Probability|L1,200,200
+test/prealgebra/1572.json,Prealgebra,4,Prealgebra|L4,200,200
+test/number_theory/132.json,Number Theory,1,Number Theory|L1,200,200
+test/algebra/1960.json,Algebra,4,Algebra|L4,200,200
+test/precalculus/398.json,Precalculus,5,Precalculus|L5,200,161
+test/intermediate_algebra/1797.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,180
+test/prealgebra/65.json,Prealgebra,2,Prealgebra|L2,200,200
+test/prealgebra/1227.json,Prealgebra,3,Prealgebra|L3,200,198
+test/intermediate_algebra/2146.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,26
+test/algebra/2680.json,Algebra,2,Algebra|L2,200,200
+test/algebra/2391.json,Algebra,4,Algebra|L4,200,200
+test/number_theory/769.json,Number Theory,5,Number Theory|L5,200,198
+test/precalculus/681.json,Precalculus,3,Precalculus|L3,200,158
+test/algebra/776.json,Algebra,5,Algebra|L5,200,198
+test/algebra/1796.json,Algebra,5,Algebra|L5,200,200
+test/precalculus/145.json,Precalculus,4,Precalculus|L4,200,68
+test/precalculus/625.json,Precalculus,3,Precalculus|L3,200,200
+test/precalculus/1202.json,Precalculus,5,Precalculus|L5,200,89
+test/intermediate_algebra/2015.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,1
+test/number_theory/1002.json,Number Theory,5,Number Theory|L5,200,81
+test/algebra/1339.json,Algebra,5,Algebra|L5,200,200
+test/precalculus/1133.json,Precalculus,5,Precalculus|L5,200,18
+test/geometry/843.json,Geometry,3,Geometry|L3,200,149
+test/algebra/2743.json,Algebra,2,Algebra|L2,200,199
+test/intermediate_algebra/121.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,166
+test/intermediate_algebra/1014.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,170
+test/prealgebra/2019.json,Prealgebra,2,Prealgebra|L2,200,200
+test/precalculus/499.json,Precalculus,4,Precalculus|L4,200,60
+test/intermediate_algebra/1462.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,4
+test/number_theory/410.json,Number Theory,2,Number Theory|L2,200,200
+test/prealgebra/1640.json,Prealgebra,5,Prealgebra|L5,200,196
+test/algebra/2043.json,Algebra,5,Algebra|L5,200,178
+test/counting_and_probability/10.json,Counting & Probability,4,Counting & Probability|L4,200,122
+test/algebra/1553.json,Algebra,3,Algebra|L3,200,175
+test/number_theory/255.json,Number Theory,2,Number Theory|L2,200,196
+test/intermediate_algebra/199.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,195
+test/algebra/2080.json,Algebra,3,Algebra|L3,200,200
+test/prealgebra/2037.json,Prealgebra,4,Prealgebra|L4,200,200
+test/algebra/1343.json,Algebra,4,Algebra|L4,200,200
+test/algebra/668.json,Algebra,4,Algebra|L4,200,200
+test/counting_and_probability/731.json,Counting & Probability,5,Counting & Probability|L5,200,31
+test/intermediate_algebra/1779.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,3
+test/algebra/2430.json,Algebra,4,Algebra|L4,200,200
+test/prealgebra/996.json,Prealgebra,1,Prealgebra|L1,200,192
+test/number_theory/1000.json,Number Theory,5,Number Theory|L5,200,189
+test/algebra/2789.json,Algebra,1,Algebra|L1,200,200
+test/number_theory/13.json,Number Theory,5,Number Theory|L5,200,187
+test/number_theory/459.json,Number Theory,3,Number Theory|L3,200,200
+test/algebra/1814.json,Algebra,2,Algebra|L2,200,200
+test/algebra/2476.json,Algebra,2,Algebra|L2,200,200
+test/precalculus/323.json,Precalculus,5,Precalculus|L5,200,48
+test/counting_and_probability/190.json,Counting & Probability,2,Counting & Probability|L2,200,200
+test/intermediate_algebra/1102.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,200
+test/number_theory/342.json,Number Theory,1,Number Theory|L1,200,200
+test/prealgebra/805.json,Prealgebra,3,Prealgebra|L3,200,151
+test/algebra/2780.json,Algebra,5,Algebra|L5,200,188
+test/prealgebra/914.json,Prealgebra,4,Prealgebra|L4,200,37
+test/algebra/824.json,Algebra,4,Algebra|L4,200,200
+test/number_theory/679.json,Number Theory,2,Number Theory|L2,200,146
+test/algebra/1425.json,Algebra,2,Algebra|L2,200,200
+test/intermediate_algebra/834.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/number_theory/72.json,Number Theory,4,Number Theory|L4,200,200
+test/precalculus/703.json,Precalculus,5,Precalculus|L5,200,149
+test/prealgebra/1114.json,Prealgebra,2,Prealgebra|L2,200,200
+test/algebra/224.json,Algebra,4,Algebra|L4,200,197
+test/algebra/435.json,Algebra,3,Algebra|L3,200,200
+test/intermediate_algebra/158.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,107
+test/prealgebra/846.json,Prealgebra,3,Prealgebra|L3,200,200
+test/algebra/2470.json,Algebra,1,Algebra|L1,200,200
+test/prealgebra/1930.json,Prealgebra,5,Prealgebra|L5,200,89
+test/intermediate_algebra/752.json,Intermediate Algebra,1,Intermediate Algebra|L1,200,200
+test/counting_and_probability/1003.json,Counting & Probability,5,Counting & Probability|L5,200,28
+test/prealgebra/1252.json,Prealgebra,2,Prealgebra|L2,200,197
+test/number_theory/22.json,Number Theory,3,Number Theory|L3,200,111
+test/intermediate_algebra/1279.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,1
+test/number_theory/1128.json,Number Theory,5,Number Theory|L5,200,199
+test/precalculus/1252.json,Precalculus,2,Precalculus|L2,200,200
+test/intermediate_algebra/1467.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,0
+test/number_theory/1090.json,Number Theory,5,Number Theory|L5,200,112
+test/precalculus/1082.json,Precalculus,3,Precalculus|L3,200,167
+test/intermediate_algebra/101.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,191
+test/counting_and_probability/199.json,Counting & Probability,2,Counting & Probability|L2,200,38
+test/geometry/477.json,Geometry,3,Geometry|L3,200,200
+test/number_theory/239.json,Number Theory,1,Number Theory|L1,200,200
+test/prealgebra/1203.json,Prealgebra,5,Prealgebra|L5,200,200
+test/intermediate_algebra/1365.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,182
+test/intermediate_algebra/1350.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,11
+test/prealgebra/1128.json,Prealgebra,5,Prealgebra|L5,200,23
+test/precalculus/356.json,Precalculus,3,Precalculus|L3,200,200
+test/algebra/2779.json,Algebra,5,Algebra|L5,200,190
+test/intermediate_algebra/1930.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,4
+test/intermediate_algebra/1981.json,Intermediate Algebra,4,Intermediate Algebra|L4,200,195
+test/intermediate_algebra/1232.json,Intermediate Algebra,3,Intermediate Algebra|L3,200,200
+test/geometry/561.json,Geometry,5,Geometry|L5,200,4
+test/intermediate_algebra/1508.json,Intermediate Algebra,5,Intermediate Algebra|L5,200,42
+test/geometry/615.json,Geometry,4,Geometry|L4,200,200

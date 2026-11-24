@@ -1,0 +1,18 @@
+# Ground truth: 200 attempts on each of the 500 MATH-500 problems.
+# ~100k completions; on one A10G/L4 (g5.xlarge / g6.xlarge) with vLLM this is a few hours for a 1.5B model.
+backend: vllm
+model: Qwen/Qwen2.5-Math-1.5B-Instruct
+dataset: HuggingFaceH4/MATH-500
+split: test
+n_samples: 200
+batch_problems: 50          # checkpoint granularity (resumable)
+sampling:
+  temperature: 0.6
+  top_p: 0.95
+  max_tokens: 2048
+  seed: 0
+max_model_len: 4096
+keep_completions: true
+use_math_verify: true
+output_dir: outputs/generate/qwen2.5-math-1.5b
+s3_uri: null                # set e.g. s3://<bucket>/passk/qwen2.5-math-1.5b on AWS
