@@ -11,3 +11,8 @@ mlflow.db
 .venv/
 figures/*/figs/*.png
 *_raw.csv.gz
+infra/terraform/.terraform/
+infra/terraform/*.tfstate*
+infra/terraform/.terraform.lock.hcl
+*.tfvars
+!infra/terraform/example.tfvars

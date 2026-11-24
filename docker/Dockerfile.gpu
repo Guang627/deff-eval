@@ -1,0 +1,11 @@
+ARG VLLM_IMAGE=vllm/vllm-openai:v0.10.0
+FROM ${VLLM_IMAGE}
+ENV PYTHONUNBUFFERED=1 MPLBACKEND=Agg HF_HOME=/cache/hf
+WORKDIR /app
+COPY pyproject.toml README.md ./
+COPY src ./src
+COPY scripts/worker_install.sh ./scripts/
+RUN bash scripts/worker_install.sh /app
+COPY configs ./configs
+ENTRYPOINT ["passk"]
+CMD ["--help"]

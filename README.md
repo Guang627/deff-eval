@@ -15,7 +15,7 @@ on a pilot that is disjoint from the held-out data used to measure the spread. T
 | SWE-bench Verified | repositories | resolved matrix of public submissions × 500 tasks (129 used) |
 | MATH-500 (negative control) | none; subject × level cells | 500 problems × 200 attempts, same model |
 
-Everything below runs on a CPU from the saved per-problem counts. Only regenerating the counts needs a GPU.
+Everything below runs on a CPU from the saved per-problem counts. Only regenerating the counts needs a GPU (on AWS, see below).
 
 ## Install
 
@@ -82,6 +82,55 @@ Runs are resumable and write `completions.jsonl`, `counts.csv` and `meta.json` t
 overridden on the command line (`passk generate --config ... n_samples=16 limit=10`). `make smoke` checks the whole
 pipeline on CPU with a mock model.
 
+## Running generation on AWS
+
+The MATH-500 and GSM-Symbolic counts in `results/` were generated on AWS: one-shot EC2 **spot** `g5.xlarge` workers
+(1× A10G) in `us-east-2`, provisioned with Terraform, running the public `vllm/vllm-openai:v0.10.0` image with this
+repo installed from a code tarball in S3.
+
+| run | generations | notes |
+|---|---|---|
+| MATH-500 | 500 problems × 200 = 100,000 | ~3,700 output tokens/s; one spot interruption at 250/500, resumed from S3 |
+| GSM-Symbolic pilot | 100 problems × 64 = 6,400 | 11 min; checked dataset schema, grading and output length |
+| GSM-Symbolic | 5,000 problems × 64 = 320,000 | ~9 h; spot interruptions, resumed from S3 without redoing finished problems |
+
+What Terraform (`infra/terraform/`) creates:
+
+* a private, versioned, encrypted S3 bucket for code, partial results, logs and final counts;
+* least-privilege IAM roles (EC2 worker limited to this bucket and to terminating instances tagged
+  `Project=passk-smooth`; a SageMaker execution role);
+* an ECR repository with scan-on-push (only for the optional `code_source = "ecr"` path);
+* the GPU worker: Deep Learning Base AMI, IMDSv2 with hop limit 2 so the container reaches instance-role credentials,
+  no inbound ports or SSH keys (Session Manager only).
+
+The worker (`infra/terraform/user_data.sh.tftpl`) pulls earlier partial results from S3, syncs progress and the log
+back every 10 minutes, runs `passk generate`, writes `EXIT_STATUS`, uploads, and terminates itself. A reclaimed spot
+instance therefore loses at most the last few minutes of work: rerunning `terraform apply` with the same `run_name`
+resumes. `scripts/worker_install.sh` pins every package the vLLM image already ships, so installing this repo cannot
+break the image's vllm / torch / transformers stack.
+
+```bash
+export AWS_PROFILE=<profile> AWS_REGION=us-east-2          # request G/VT spot quota for g5 first
+terraform -chdir=infra/terraform init
+terraform -chdir=infra/terraform apply -var-file=example.tfvars -var launch_generation=false   # bucket, IAM, ECR
+scripts/upload_code.sh                                                                          # git HEAD -> S3
+
+# pilot, then the full run (same run_name to resume after a spot interruption)
+terraform -chdir=infra/terraform apply -var-file=example.tfvars \
+  -var generate_config=configs/generate_gsm_symbolic_pilot.yaml -var run_name=gsm-symbolic-pilot
+terraform -chdir=infra/terraform apply -var-file=example.tfvars \
+  -var generate_config=configs/generate_gsm_symbolic.yaml -var run_name=gsm-symbolic
+
+scripts/status.sh gsm-symbolic          # instance state, problems finished, vLLM progress, last log lines
+scripts/fetch_results.sh gsm-symbolic   # S3 -> outputs/generate/gsm-symbolic/ (FULL=1 also pulls completions)
+```
+
+Other options (`infra/terraform/variables.tf`): `use_spot`, `instance_type`, `generate_overrides` (e.g.
+`"limit=20 n_samples=16"`), `hf_token_ssm_parameter` for gated models, and `code_source = "ecr"` to run a prebuilt image
+from `docker/Dockerfile.gpu` (`scripts/push_ecr.sh`). `infra/sagemaker/launch_generation.py` submits the same job as a
+managed-spot SageMaker training job with S3 checkpointing (`--dry-run` prints the request); it was not used for the
+runs above. Remove everything with `terraform -chdir=infra/terraform destroy` once the counts are saved.
+
 ## Layout
 
 ```
@@ -91,6 +140,9 @@ figures/            figure scripts for the arXiv version (arxiv/) and the worksh
 results/            saved counts, resolved matrix and every result file the paper reports
 src/passk_smooth/   generation (vLLM / HF / mock backends), answer grading, unbiased pass@k estimator, intervals
 configs/            generation configs
+infra/              Terraform (S3, IAM, ECR, EC2 spot GPU worker) and a SageMaker launcher
+docker/             GPU image for the ECR / SageMaker path
+scripts/*.sh        upload code, run status, fetch results, worker install, push image
 tests/              unit tests
 ```
 

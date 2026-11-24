@@ -1,0 +1,46 @@
+#!/bin/bash
+set -uxo pipefail
+exec > >(tee -a /var/log/passk-generate.log) 2>&1
+OUT=/opt/passk/outputs
+mkdir -p $OUT /opt/passk/hf /opt/passk/code
+echo "passk: boot at $(date -u)"
+
+HF_TOKEN=""
+if [ -n "${hf_token_ssm}" ]; then
+  HF_TOKEN=$(aws ssm get-parameter --region ${region} --with-decryption --name "${hf_token_ssm}" --query Parameter.Value --output text)
+fi
+
+aws s3 sync ${s3_uri}/ $OUT/ --region ${region} || true
+
+( while true; do sleep 600
+    aws s3 sync $OUT/ ${s3_uri}/ --region ${region} --only-show-errors
+    aws s3 cp /var/log/passk-generate.log ${s3_uri}/logs/latest.log --region ${region} --only-show-errors
+  done ) &
+
+COMMON="--gpus all --rm --shm-size 8g -e HF_TOKEN=$HF_TOKEN -e HF_HOME=/cache/hf -e AWS_REGION=${region} -e PASSK_DISABLE_TRACKING=1 -v $OUT:/run_out -v /opt/passk/hf:/cache/hf"
+ARGS="generate --config ${config} output_dir=/run_out s3_uri=${s3_uri} ${overrides}"
+
+if [ "${code_source}" = "s3" ]; then
+  aws s3 cp ${s3_code_uri} /opt/passk/code.tar.gz --region ${region}
+  tar -xzf /opt/passk/code.tar.gz -C /opt/passk/code
+  docker pull ${vllm_image}
+  docker run $COMMON -v /opt/passk/code:/code -w /code --entrypoint bash ${vllm_image} -lc "
+    bash /code/scripts/worker_install.sh /code &&
+    passk $ARGS"
+  STATUS=$?
+else
+  aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${registry}
+  docker pull ${image}
+  docker run $COMMON -w /app ${image} $ARGS
+  STATUS=$?
+fi
+
+echo "passk: finished with status $STATUS at $(date -u)"
+echo "$STATUS" > $OUT/EXIT_STATUS
+aws s3 sync $OUT/ ${s3_uri}/ --region ${region}
+aws s3 cp /var/log/passk-generate.log ${s3_uri}/logs/latest.log --region ${region}
+IMDS_TOKEN=$(curl -s -X PUT http://169.254.169.254/latest/api/token -H "X-aws-ec2-metadata-token-ttl-seconds: 300")
+INSTANCE_ID=$(curl -s -H "X-aws-ec2-metadata-token: $IMDS_TOKEN" http://169.254.169.254/latest/meta-data/instance-id)
+aws ec2 terminate-instances --region ${region} --instance-ids "$INSTANCE_ID" || true
+sleep 60
+shutdown -h now
