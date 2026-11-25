@@ -1,4 +1,4 @@
-# passk-smooth: pilot-predicted design effects for pass@k
+# deff-eval: pilot-predicted design effects for pass@k
 
 Code and data for the short paper on **how much concentrating a benchmark on few sources inflates the spread of
 pass@k, and whether a small pilot predicts it**. Benchmarks often contain many problems from the same source (a
@@ -48,8 +48,8 @@ python scripts/analysis/deff_validation.py --gsm-split level --out outputs/deff_
 ```
 
 Other options: `--splits` (pilot/held-out splits, default 20), `--reps` (draws per tier, default 1000), `--seed`.
-Method details and result tables: `docs/results_deff_validation.md`, `docs/results_gsm_symbolic.md`,
-`docs/results_swebench_repos.md`.
+Result tables: `results/deff_validation/table_deff.md`, `results/gsm_symbolic_qwen2.5-math-1.5b/tiers/table_template_tiers.md`,
+`results/swebench_verified/table_swebench_repos.md`.
 
 ## Data
 
@@ -146,4 +146,4 @@ tests/              unit tests
 
 ## License
 
-MIT (see `pyproject.toml`).
+MIT (see `LICENSE`).
